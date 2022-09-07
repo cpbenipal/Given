@@ -1,0 +1,79 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Update Company Details</h5>
+        <!-- <button type="button" routerLink="/user/userlist" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary " data-scribe-element="profile_edit_button">
+            <span class="button-text">Back</span>
+        </button> -->
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div class="relative">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center start" class="pt-2">
+            <div fxLayout="column" fxFlex.xl="50" fxFlex.lg="60" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="90">
+                <mat-card class="login-session">  
+                    <form #form="ngForm" (ngSubmit)="updateProfile(form)">
+                        <div fxLayout="column" fxLayoutAlign="start stretch">
+
+                            <!--<img #img class="img-responsive img-circle" [src]="photo | canvasPipe" width="120" height="120" alt="user list image" (error)="apiService.userImage(img)">-->
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Company Name" type="text" name="companyName" required [(ngModel)]="companyName" maxlength="200">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-select name="companySizeId" [ngModelOptions]="{standalone: true}" placeholder="Company Size" [(ngModel)]="companySizeId" required>
+                                    <mat-option *ngFor="let companySize of companySizes" [value]="companySize.id">
+                                        {{ companySize.size }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Phone" type="tel" name="phone" [(ngModel)]="phone" maxlength="12">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Fax" type="text" name="fax" [(ngModel)]="fax" maxlength="11">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Street Line 1" type="text" maxlength="1000" name="streetLine1" required [(ngModel)]="streetLine1">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Street Line 2" type="text" maxlength="1000" name="streetLine2" required [(ngModel)]="streetLine2">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="City" type="text" name="city" maxlength="200" required [(ngModel)]="city">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="State" type="text" name="state" maxlength="150" required [(ngModel)]="state">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Zip" type="text" name="zip" maxlength="8" required [(ngModel)]="zip">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Website" type="text" name="website" maxlength="200" required [(ngModel)]="website">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <textarea matInput placeholder="Description" type="text" name="description" maxlength="1000" required [(ngModel)]="description"></textarea>
+                            </mat-form-field>
+
+
+
+                            <button [ngClass]="{'disabled':form.invalid}" [disabled]="form.invalid" type="submit" style="width: 150px;margin: auto;" mat-raised-button class="UserActions-editButton edit-button EdgeButton mat-green">
+                                <span class="button-text">Update</span>
+                            </button>
+                        </div>
+                        <!-- <div>
+                        <p>Sign in using</p> <a href="#" class="shared-icon mr-1 mat-blue"><i class="fa fa-facebook fa-lg mr-1"></i> Facebook</a><a href="#" class="shared-icon mat-red"><i class="fa fa-google fa-lg mr-1"></i>Google</a></div> -->
+                    </form>
+
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

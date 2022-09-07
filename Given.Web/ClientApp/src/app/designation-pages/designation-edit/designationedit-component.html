@@ -1,0 +1,51 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Update Designation</h5>
+        <button type="button" routerLink="/designation/designationlist" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary " data-scribe-element="profile_edit_button">
+            <span class="button-text">Back</span> 
+        </button>
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div class="relative">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center start" class="pt-2">
+            <div fxLayout="column" fxFlex.xl="50" fxFlex.lg="60" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="90">
+                <mat-card class="login-session">
+                    <div>
+                        <!-- <h2 class="base-border">Login Form</h2> -->
+                        <p>Update Designation Details</p>
+                        <form #form="ngForm" (ngSubmit)="updateDesignation(form)">
+                            <div fxLayout="column" fxLayoutAlign="start stretch">
+                                
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="Name" ngModel type="text" name="name" [(ngModel)]="name">
+                                </mat-form-field>
+                                
+                                <mat-form-field>
+                                    <mat-select ngModel name="categoryId" [ngModelOptions]="{standalone: true}" placeholder="Category" [(ngModel)]="categoryId" required>
+                                        <mat-option *ngFor="let category of allCategories; let i = index" [value]="category.id">{{category.name}}</mat-option>
+                                        
+                                    </mat-select>
+                                </mat-form-field>
+                                
+                                <mat-form-field>
+                                    <mat-select name="status" [ngModelOptions]="{standalone: true}" placeholder="Status" [(ngModel)]="status" ngModel>
+                                        <mat-option [value]="true">Active</mat-option>
+                                        <mat-option [value]="false">In-Active</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                
+                                <button [ngClass]="{'disabled':form.invalid  || !categoryId}" [disabled]="form.invalid" type="submit" style="width: 150px;margin: auto;" mat-raised-button class="UserActions-editButton edit-button EdgeButton mat-green">
+                                    <span class="button-text">Update Designation</span> 
+                                </button>
+                                
+                            </div>
+                            
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

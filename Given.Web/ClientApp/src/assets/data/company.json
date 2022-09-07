@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Ethel Price",
+        "gender": "female",
+        "company": "My company name is very long and funny because funny is fun",
+        "age": 22
+    },
+    {
+        "name": "Claudine Neal",
+        "gender": "female",
+        "company": "Sealoud",
+        "age": 55
+    } 
+]

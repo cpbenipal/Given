@@ -1,0 +1,1 @@
+{"version":3,"file":"labelledReport.routing.js","sourceRoot":"","sources":["labelledReport.routing.ts"],"names":[],"mappings":";;AAEA,mGAAiG;AACpF,QAAA,oBAAoB,GAAW,CAAC;QACzC,IAAI,EAAE,EAAE;QACR,UAAU,EAAE,MAAM;QAClB,SAAS,EAAE,MAAM;KACpB,EAAE;QACC,IAAI,EAAE,EAAE;QACR,QAAQ,EAAE,CAAC;gBACP,IAAI,EAAE,MAAM;gBACZ,SAAS,EAAE,0DAA2B;aACzC,CAAC;KACL,CAAC,CAAC"}

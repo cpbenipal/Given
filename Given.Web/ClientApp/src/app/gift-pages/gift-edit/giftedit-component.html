@@ -1,0 +1,108 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Update Gift</h5>
+        <button type="button" routerLink="/gift/giftlist" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary " data-scribe-element="profile_edit_button">
+            <span class="button-text">Back</span> 
+        </button>
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div class="relative">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center start" class="pt-2">
+            <div fxLayout="column" fxFlex.xl="50" fxFlex.lg="60" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="90">
+                <mat-card class="login-session">
+                    <div>
+                        <!-- <h2 class="base-border">Login Form</h2> -->
+                        <p>Update Gift Details</p>
+                        <form #form="ngForm" (ngSubmit)="updateGift(form)">
+                            <div fxLayout="column" fxLayoutAlign="start stretch">
+                                
+                                <div class="ng-autocomplete">
+                                    <ng-autocomplete
+                                      [data]="allContacts"
+                                      [searchKeyword]="keyword"
+                                      (selected)='selectEventC($event)'
+                                      (inputCleared)='onChangeSearchC()'
+                                      (inputChanged)='onChangeInputC()'
+                                      [itemTemplate]="itemTemplate"
+                                      [notFoundTemplate]="notFoundTemplate"
+                                      placeHolder="Select Contact"
+                                      [(ngModel)]="contactName"
+                                      [ngModelOptions]="{standalone: true}"
+                                      >
+
+                                    </ng-autocomplete>
+                                     
+                                    <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.firstName"></a>
+                                    </ng-template>
+                                     
+                                    <ng-template #notFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+                                
+                                <mat-form-field style="width: 100%">
+                                    <textarea matInput placeholder="Description" required ngModel type="text" name="description" [(ngModel)]="description"></textarea>
+                                </mat-form-field>
+                                
+                                <mat-form-field style="width: 100%">
+                                    <input required matInput placeholder="Amount" ngModel type="text" name="amount" [(ngModel)]="amount">
+                                </mat-form-field>
+                                
+                                <mat-form-field>
+                                  <mat-label>Gift Date</mat-label>
+                                  <input [(ngModel)]="giftDate" required ngModel name="giftDate" matInput [matDatepicker]="picker" [min]="today">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
+                                <div class="ng-autocomplete">
+                                    <ng-autocomplete
+                                      [data]="allDesignations"
+                                      [searchKeyword]="keywordD"
+                                      (selected)='selectEventD($event)'
+                                      (inputCleared)='onChangeSearchD()'
+                                      (inputChanged)='onChangeInputD()'
+                                      [itemTemplate]="itemTemplateD"
+                                      [notFoundTemplate]="notFoundTemplateD"
+                                      placeHolder="Select Designation"
+                                      [(ngModel)]="designationName"
+                                      [ngModelOptions]="{standalone: true}"
+                                      >
+
+                                    </ng-autocomplete>
+                                    <!--  (inputChanged)='onChangeSearch($event)'
+                                      (inputFocused)='onFocused($event)' -->
+                                    <ng-template #itemTemplateD let-item>
+                                    <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                     
+                                    <ng-template #notFoundTemplateD let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+                               
+                                <!-- <mat-form-field>
+                                    <mat-select name="isActive" [ngModelOptions]="{standalone: true}" placeholder="Active" [(ngModel)]="isActive" ngModel>
+                                        <mat-option [value]="true">Yes</mat-option>
+                                        <mat-option [value]="false">No</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                 -->
+                                <button [ngClass]="{'disabled':form.invalid || contactId=='' ||
+designationId==''}" [disabled]="form.invalid" type="submit" style="width: 150px;margin: auto;" mat-raised-button class="UserActions-editButton edit-button EdgeButton mat-green">
+                                    <span class="button-text">Update Gift</span> 
+                                </button>
+                                
+                            </div>
+                            <!-- <div>
+                                <p>Sign in using</p> <a href="#" class="shared-icon mr-1 mat-blue"><i class="fa fa-facebook fa-lg mr-1"></i> Facebook</a><a href="#" class="shared-icon mat-red"><i class="fa fa-google fa-lg mr-1"></i>Google</a></div> -->
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

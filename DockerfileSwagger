@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/core/sdk AS build
+WORKDIR /src
+COPY ["Given.Swagger/Given.Swagger.csproj", "Given.Swagger/"]
+RUN dotnet restore "Given.Swagger/Given.Swagger.csproj"
+COPY . .
+WORKDIR "/src/Given.Swagger"
+RUN dotnet build "Given.Swagger.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Given.Swagger.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Given.Swagger.dll"]

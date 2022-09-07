@@ -1,0 +1,55 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Users</h5>
+        <button type="button" routerLink="/user/userinvite" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary btn-red" data-scribe-element="profile_edit_button">
+            <span class="button-text">Invite User</span> 
+        </button>
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div fxLayout="row wrap" class="user-list-wrapper">
+    
+    <div class="user-card-w" fxFlex.sm="33.33" fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" *ngFor="let user of users" [ngClass]="{'hide':userId==user.id}">
+        <div class="user-list-card" [routerLink]="['/user/userprofile/'+user.id]">
+            <div class="user-card-cover" style="background-image:url(assets/images/night.jpg)">
+                <div>
+                    <div class="text-center user-thumb">
+                        <img #img class="img-responsive img-circle" [src]="user.photo | canvasPipe" width="120" height="120" alt="user list image" (error)="apiService.userImage(img)">
+                    </div>
+
+                </div>
+            </div>
+            <div class="user-content">
+                <div class="pad-wrap d-flex justify-content-between">
+                    <div>
+                        <h4 class="user-name text-primary">{{user.firstName}} {{user.lastName}}</h4>
+                        <span class="silk-block">{{user.email}}</span>
+                    </div>
+
+                </div>
+                <span class="d-flex">
+                    <b>Company</b> : {{user.company}} <br>
+
+                </span>
+                <span class="d-flex">
+                    <b>Role</b> : {{user.roleName}} <br>
+
+                </span>
+                <span class="d-flex mb-1">
+                    <b>Size</b> : {{user.companySize}}
+                </span>
+                <div class="align-self-center">
+                    <button *ngIf="user.emailConfirmed" type="button" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary" data-scribe-element="profile_edit_button">
+                        <span class="button-text">Accepted</span>
+                    </button>
+                    <button *ngIf="!user.emailConfirmed" type="button" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary btn-red" data-scribe-element="profile_edit_button">
+                        <span class="button-text">Pending</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="no-data-found-box">
+        Invite people to Given!
+    </div>

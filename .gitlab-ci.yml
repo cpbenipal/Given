@@ -1,0 +1,26 @@
+stages:
+  - DEV-DEPLOY
+  
+dev-deployment:
+  stage: DEV-DEPLOY
+  tags:
+       - prodserver
+  only:
+    refs:
+       - development
+  script:
+       - ls 
+       - sudo docker stop      $CI_COMMIT_REF_NAME-internal-project-given-swagger || true 
+       - sudo docker rm        $CI_COMMIT_REF_NAME-internal-project-given-swagger || true 
+       - sudo docker rmi       $CI_COMMIT_REF_NAME-internal-project-given-swagger --force || true
+       - sudo docker build -t  $CI_COMMIT_REF_NAME-internal-project-given-swagger  -f DockerfileSwagger .
+       - sudo docker run -d  -p 9984:80  --name  $CI_COMMIT_REF_NAME-internal-project-given-swagger $CI_COMMIT_REF_NAME-internal-project-given-swagger
+       - sudo docker stop      $CI_COMMIT_REF_NAME-internal-project-given-web || true 
+       - sudo docker rm        $CI_COMMIT_REF_NAME-internal-project-given-web || true 
+       - sudo docker rmi       $CI_COMMIT_REF_NAME-internal-project-given-web --force || true
+       - sudo docker build -t  $CI_COMMIT_REF_NAME-internal-project-given-web  -f DockerfileGivenWeb .
+       - sudo docker run -d  -p 9980:80  --name  $CI_COMMIT_REF_NAME-internal-project-given-web $CI_COMMIT_REF_NAME-internal-project-given-web
+       - sudo docker rmi $(docker images --filter "dangling=true" -q --no-trunc) || true
+ 
+
+ 

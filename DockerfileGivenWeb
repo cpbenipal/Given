@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/core/sdk AS build
+WORKDIR /src
+COPY ["Given.Web/Given.Web.csproj", "Given.Web/"]
+RUN dotnet restore "Given.Web/Given.Web.csproj"
+COPY . .
+WORKDIR "/src/Given.Web"
+RUN dotnet build "Given.Web.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN apt-get update 
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash
+RUN apt-get install -y nodejs
+RUN node -v
+RUN dotnet publish "Given.Web.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Given.Web.dll"]

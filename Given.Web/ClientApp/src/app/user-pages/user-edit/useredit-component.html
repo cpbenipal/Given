@@ -1,0 +1,59 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Update Profile</h5>
+        <!-- <button type="button" routerLink="/user/userlist" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary " data-scribe-element="profile_edit_button">
+            <span class="button-text">Back</span>
+        </button> -->
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div class="relative">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center start" class="pt-2">
+            <div fxLayout="column" fxFlex.xl="50" fxFlex.lg="60" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="90">
+                <mat-card class="login-session">   
+                    <form #form="ngForm" (ngSubmit)="updateProfile(form)">
+                        <div fxLayout="column" fxLayoutAlign="start stretch">
+
+                            <!--<img #img class="img-responsive img-circle" [src]="photo | canvasPipe" width="120" height="120" alt="user list image" (error)="apiService.userImage(img)">-->
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="E-Mail" type="text" name="email" readonly [(ngModel)]="email">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="First Name" type="text" maxlength="100" name="firstName" required [(ngModel)]="firstName">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Last Name" type="text" maxlength="100" name="lastName" required [(ngModel)]="lastName">
+                            </mat-form-field>
+
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Phone Number" type="tel" name="phoneNumber" maxlength="20" required [(ngModel)]="phoneNumber">
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="userId!=apiService.getUserDetail('id')">
+                                <mat-select [ngModelOptions]="{standalone: true}" placeholder="Role" [(ngModel)]="roleId" ngModel required>
+                                    <mat-option *ngFor="let role of allRoles" [value]="role.roleId">
+                                        {{ role.roleName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Created On" type="text" name="createdOn" readonly [(ngModel)]="createdOn">
+                            </mat-form-field>
+
+                            <button [ngClass]="{'disabled':form.invalid}" [disabled]="form.invalid" type="submit" style="width: 150px;margin: auto;" mat-raised-button class="UserActions-editButton edit-button EdgeButton mat-green">
+                                <span class="button-text">Update</span>
+                            </button>
+                        </div>
+                        <!-- <div>
+                        <p>Sign in using</p> <a href="#" class="shared-icon mr-1 mat-blue"><i class="fa fa-facebook fa-lg mr-1"></i> Facebook</a><a href="#" class="shared-icon mat-red"><i class="fa fa-google fa-lg mr-1"></i>Google</a></div> -->
+                    </form>
+
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

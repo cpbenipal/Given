@@ -1,0 +1,110 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Add Contact</h5>
+        <button type="button" routerLink="/contact/contactlist" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary " data-scribe-element="profile_edit_button">
+            <span class="button-text">Back</span> 
+        </button>
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div class="relative">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center start" class="pt-2">
+            <div fxLayout="column" fxFlex.xl="50" fxFlex.lg="60" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="90">
+                <mat-card class="login-session">
+                    <div>
+                        <!-- <h2 class="base-border">Login Form</h2> -->
+                        <p>Enter Contact Details</p>
+                        <form #form="ngForm" (ngSubmit)="addContact(form)">
+                            <div fxLayout="column" fxLayoutAlign="start stretch">
+                                
+                                <mat-form-field>
+                                    <mat-select name="prefix" [ngModelOptions]="{standalone: true}" placeholder="Prefix" [(ngModel)]="prefix" ngModel>
+                                        <mat-option value="1">Mr</mat-option>
+                                        <mat-option value="2">Ms</mat-option>
+                                        <mat-option value="3">Mrs</mat-option>
+                                        <mat-option value="4">Other</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="First Name" ngModel type="text" name="firstName" [(ngModel)]="firstName">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Middle Name" ngModel type="text" name="middleName" [(ngModel)]="middleName">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Last Name" ngModel type="text" name="lastName" [(ngModel)]="lastName">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Company" ngModel type="text" name="company" [(ngModel)]="company">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="Primary E-Mail" ngModel type="email" name="primaryEmail" [(ngModel)]="primaryEmail">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Secondary E-Mail" ngModel type="email" name="secondaryEmail" [(ngModel)]="secondaryEmail">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="Mobile" ngModel type="text" name="mobile" [(ngModel)]="mobile">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Phone" ngModel type="tel" name="phone" [(ngModel)]="phone">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-select required ngModel name="gender" [ngModelOptions]="{standalone: true}" placeholder="Gender" [(ngModel)]="gender">
+                                        <mat-option value="1">Male</mat-option>
+                                        <mat-option value="2">Female</mat-option>
+                                        <mat-option value="3">Other</mat-option>
+                                        <mat-option value="4">Unknown</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                 
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Address 1" ngModel type="text" name="address1" [(ngModel)]="address1">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Address 2" ngModel type="text" name="address2" [(ngModel)]="address2">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="City" ngModel type="text" name="city" [(ngModel)]="city">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="Zip" ngModel type="text" name="zipCode" [(ngModel)]="zipCode">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput required placeholder="State" ngModel type="text" name="state" [(ngModel)]="state">
+                                </mat-form-field>
+                                <!-- <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Country" ngModel type="text" name="country" [(ngModel)]="country">
+                                </mat-form-field> -->
+                                <!-- <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Birthday" ngModel type="text" name="birthday" [(ngModel)]="birthday">
+                                </mat-form-field> -->
+                                <mat-form-field>
+                                  <mat-label>Birthday</mat-label>
+                                  <input ngModel name="birthday" matInput [matDatepicker]="picker" [max]="today">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                               
+                                <mat-form-field>
+                                    <mat-select name="isActive" [ngModelOptions]="{standalone: true}" placeholder="Active" [(ngModel)]="isActive" ngModel>
+                                        <mat-option [value]="true">Yes</mat-option>
+                                        <mat-option [value]="false">No</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                
+                                <button [ngClass]="{'disabled':form.invalid || !gender}" [disabled]="form.invalid" type="submit" style="width: 150px;margin: auto;" mat-raised-button class="UserActions-editButton edit-button EdgeButton mat-green">
+                                    <span class="button-text">Add Contact</span> 
+                                </button>
+                                
+                            </div>
+                            <!-- <div>
+                                <p>Sign in using</p> <a href="#" class="shared-icon mr-1 mat-blue"><i class="fa fa-facebook fa-lg mr-1"></i> Facebook</a><a href="#" class="shared-icon mat-red"><i class="fa fa-google fa-lg mr-1"></i>Google</a></div> -->
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

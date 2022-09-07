@@ -1,0 +1,64 @@
+<mat-card class="heading-card">
+    <mat-card-title>
+        <h5 class="mt-0">Designations</h5>
+        <button type="button" routerLink="/designation/add-designation" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary btn-red" data-scribe-element="profile_edit_button">
+            <span class="button-text">Add Designation</span> 
+        </button>
+    </mat-card-title>
+    <hr>
+</mat-card>
+<div fxLayout="row wrap" class="user-list-wrapper">
+    
+    <div fxLayout fxLayoutAlign="center center" style="margin-top: 20px;">
+      <mat-form-field fxFlex="100%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" matSort class="table">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="categoryId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+            <td mat-cell *matCellDef="let element"> {{ element.categoryId | returnCategoryPipe : allCategories }}</td>
+        </ng-container>
+
+        
+
+        <ng-container matColumnDef="createdOn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdOn | date: 'dd/MM/yyyy HH:mm'}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status ? 'Active' : 'In-Active'}} </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef> Update </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                    <mat-icon class="mat-18">system_update</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="pageSize" [length]="totalCount" [pageSizeOptions]="[5,10,20,50,100,500]" style="width: 100%;" (page)="pageChanged($event)">
+    </mat-paginator>
